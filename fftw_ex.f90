@@ -10,7 +10,7 @@ program main
 
     real, allocatable :: r(:), corr1(:), corr2(:)
     integer(8) :: plan_c2r_corr(2), plan_r2c_corr(2)
-    integer :: n_corr, i_corr
+    integer :: n_corr
 
     n = 5
     allocate(test_in(n+2))
@@ -56,35 +56,27 @@ program main
     call dfftw_plan_dft_r2c_1d(plan_r2c_corr(2), n_corr, corr2, corr2, FFTW_ESTIMATE)
     call dfftw_plan_dft_c2r_1d(plan_c2r_corr(2), n_corr, corr2, corr2, FFTW_ESTIMATE)
 
-    open(100, FILE='corr.plt', ACTION='READ')
 
     do i = 1, n_corr
-        read(100, *) r(i),corr1(i), corr2(i)
-        print *, r(i), corr1(i), corr2(i)
+        corr1(i) = i  
+        corr2(i) = 2*i
+        write(*,*)corr1(i), corr2(i)
     end do
-    close(100)
+
     call dfftw_execute_dft_r2c(plan_r2c_corr(1), corr1, corr1)
     call dfftw_execute_dft_r2c(plan_r2c_corr(2), corr2, corr2)
 
-    open(100, FILE='E1D.plt', ACTION='WRITE')
     do i = 1, n_corr/2
-        write(100, '(I4, 3ES20.9)') &
-            i,  &
-            2.0*corr1(2*(i-1)+1), &
-            2.0*corr2(2*(i-1)+1)
-
+       write(*, *) i, 2.0*corr1(2*(i-1)+1), 2.0*corr2(2*(i-1)+1)
     end do
-    close(100)
 
-    deallocate(r)
-    deallocate(corr1)
-    deallocate(corr2)
+!    deallocate(corr1)
+!    deallocate(corr2)
     do i = 1, 2
         call dfftw_destroy_plan(plan_r2c_corr(i))
         call dfftw_destroy_plan(plan_c2r_corr(i))
     end do
 
-
-    stop
+    write(*,*)"finished fftw"
 end program
 
