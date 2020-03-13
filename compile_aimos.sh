@@ -12,7 +12,3 @@ echo $FFTW_LIB
 
 # compile
 xlf_r fftw_ex.f90 -O0 -g $FFTW_INC $FFTW_LIB -o fftw_test
-
-
-
-
