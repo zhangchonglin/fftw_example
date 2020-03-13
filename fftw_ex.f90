@@ -1,8 +1,7 @@
 program main
-    use ISO_C_BINDING
     implicit none
 
-    include 'fftw3.f03'
+    include 'fftw3.f'
 
     real, allocatable :: test_in(:)
     integer(8) :: plan_c2r, plan_r2c
@@ -78,5 +77,6 @@ program main
     end do
 
     write(*,*)"finished fftw"
-end program
+
+end program main
 
