@@ -1,7 +1,8 @@
+#!/bin/bash -x
 # FFTW root
-FFTW_ROOT=/gpfs/u/home/MPFS/MPFScgzg/barn/xgc/fftw-3.3.8/install
+#FFTW_ROOT=/gpfs/u/home/MPFS/MPFScgzg/barn/xgc/fftw-3.3.8/install
 #FFTW_ROOT=/gpfs/u/software/dcs-spack-install/v0133/linux-rhel7-power9le/xl-16.1.1/fftw-3.3.8-xtlviu34itrln5qqclhlinyvulecdufo
-
+FFTW_ROOT=/gpfs/u/home/MPFS/MPFScgzg/barn-shared/zhangc20/software/fftw_3.3.8
 
 # lib/inc
 export FFTW_INC=-I$FFTW_ROOT/include

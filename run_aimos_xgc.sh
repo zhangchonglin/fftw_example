@@ -23,6 +23,8 @@ module load spectrum-mpi/10.3-i3wnm5t
 
 bin=./fftw_test
 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gpfs/u/home/MPFS/MPFScgzg/barn-shared/zhangc20/software/fftw_3.3.8
+
 #mpirun --bind-to core -hostfile /tmp/hosts.$SLURM_JOB_ID -np $SLURM_NTASKS /bin/bash -c "ulimit -s unlimited -c unlimited; $bin;"
 /bin/bash -c "ulimit -s unlimited -c unlimited; $bin;"
 
